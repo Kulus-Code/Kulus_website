@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kulus - Community Driven Healthcare</title>
+    <link rel="icon" href="https://via.placeholder.com/16x16" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Resets & Global Styles */
+        :root {
+            --kulus-red: #dc3545; /* Specific color from Kulus image */
+            --kulus-blue: #6c5ce7; /* Specific color from Kulus image (purple-ish) */
+            --kulus-green: #28a745; /* Specific color from Kulus image (teal/green) */
+            --kulus-black: #212529; /* Specific color from Kulus image */
+            --kulus-white: #f8f9fa; /* Specific color from Kulus image */
+            --text-dark: #333;
+            --bg-light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 960px; /* Slightly smaller max-width for simpler content */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
+            color: var(--kulus-black);
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.6rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 1rem;
+            padding-left: 20px; /* Add padding for bullets */
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '•';
+            color: var(--kulus-green);
+            position: absolute;
+            left: -15px;
+        }
+
+        a {
+            color: var(--kulus-red);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--kulus-black);
+            color: var(--kulus-white);
+            padding: 15px 0;
+            position: sticky; /* Sticky for simple single page, not fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--kulus-white);
+        }
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 30px;
+        }
+
+        .navbar .nav-links li a {
+            color: var(--kulus-white);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links li a:hover {
+            color: var(--kulus-green);
+            text-decoration: none;
+        }
+
+        /* Hamburger Menu (Not needed in this simplified version as nav is always visible or absent) */
+        .hamburger-menu {
+            display: none;
+        }
+
+        /* Hero Section - now just an introductory banner */
+        #hero {
+            background-color: var(--kulus-blue); /* Solid color background */
+            color: var(--kulus-white);
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        #hero h1 {
+            color: var(--kulus-white);
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: var(--kulus-white);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* General Section Styling */
+        .section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--kulus-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section:nth-of-type(odd) { /* Adjusted for different section count */
+            background-color: var(--bg-light);
+        }
+        .section:nth-of-type(even) { /* Adjusted for different section count */
+            background-color: var(--kulus-white);
+        }
+
+
+        /* Vision Section Grid */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            text-align: left; /* Align text left within grid items */
+        }
+
+        .vision-item {
+            background-color: var(--kulus-white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .vision-item h3 {
+            color: var(--kulus-green);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        /* Team section removed */
+        /* Contact Form removed */
+
+        /* Contact Info - now a simple section */
+        #contact {
+            background-color: var(--kulus-blue);
+            color: var(--kulus-white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        #contact h2 {
+            color: var(--kulus-white);
+        }
+
+        #contact p {
+            color: var(--kulus-white);
+            margin-bottom: 0.5rem;
+        }
+
+        #contact a {
+            color: var(--kulus-green);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--kulus-black);
+            color: var(--kulus-white);
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 0; /* No margin as contact section is directly above */
+        }
+
+        footer a {
+            color: var(--kulus-green);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust if navbar height changes */
+                left: 0;
+                width: 100%;
+                background-color: var(--kulus-black);
+                display: none; /* Hidden by default for mobile */
+            }
+
+            .navbar .nav-links.active {
+                display: flex;
+            }
+
+            .navbar .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger-menu {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+            }
+
+            .hamburger-menu span {
+                height: 3px;
+                width: 25px;
+                background-color: var(--kulus-white);
+                margin-bottom: 5px;
+                border-radius: 2px;
+            }
+
+            #hero h1 {
+                font-size: 2rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50/28a745/fff?text=Kulus" alt="Kulus Logo" id="kulus-logo"> <span>Kulus</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#vision">Our Vision</a></li>
+                    <li><a href="#data">Data Sovereignty</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>The Future of Our Health is Community.</h1>
+                <p>Imagining a future healthcare model that treats patients as owners of their own data.</p>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Kulus</h2>
+                <p>Kulus is the younger brother of the thunderbird, a protective spirit known for learning and taking care of others. At Kulus Health, we embody this spirit by building a <strong>community-driven healthcare</strong> platform.</p>
+                <p>We are focused on the future of health, starting with diabetes and pre-diabetes in Indigenous communities. We believe in a model built on:</p>
+                <ul>
+                    <li><strong>Data Sovereignty:</strong> You own and control your health data.</li>
+                    <li><strong>Holistic Health:</strong> Connecting modern care with traditional diets.</li>
+                    <li><strong>Accessibility:</strong> Promoting fitness and well-being at every age.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="vision" class="section">
+            <div class="container">
+                <h2>Health is Our Community</h2>
+                <p>We see health as a holistic part of our identity and strength.</p>
+                <div class="vision-grid">
+                    <div class="vision-item">
+                        <h3>Health is our Salmon</h3>
+                        <p>It is sustenance, resilience, and a return to the source.</p>
+                    </div>
+                    <div class="vision-item">
+                        <h3>Health is our Language</h3>
+                        <p>It is how we communicate, preserve our culture, and understand our world.</p>
+                    </div>
+                    <div class="vision-item">
+                        <h3>Health is our Community</h3>
+                        <p>It is our support system, our strength, and our shared future.</p>
+                    </div>
+                    <div class="vision-item">
+                        <h3>Health is our 4 Directions</h3>
+                        <p>It is a balance of the physical, mental, spiritual, and emotional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="data" class="section">
+            <div class="container">
+                <h2>You Are the Owner, Not the Product.</h2>
+                <p>We are imagining a world where:</p>
+                <ul>
+                    <li>Health platforms use <strong>open, secure, and accessible</strong> standards.</li>
+                    <li>Patients are <strong>data owners and customers</strong>, not data servants.</li>
+                    <li>You have the power and choice to <strong>monetize your own health data</strong>, if you wish.</li>
+                    <li>Security and privacy are genuinely <strong>empowering</strong> you, not an excuse for data mining.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>Contact us for more information about partnership or about participation in your community.</p>
+                <p>Email: <a href="mailto:admin@indigenext.com">admin@indigenext.com</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Kulus Health Inc. | <a href="https://kulus.ca">Kulus.ca</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth Scrolling for Navigation Links
+            document.querySelectorAll('.nav-links a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Get the height of the sticky navbar (if applicable)
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        const navLinks = document.querySelector('.nav-links');
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            document.querySelector('.hamburger-menu').classList.remove('open');
+                        }
+                    }
+                });
+            });
+
+            // Hamburger Menu Toggle for Mobile
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) { // Only if these elements exist
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    hamburger.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
