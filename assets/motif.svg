@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 120" role="img" aria-hidden="true">
+  <title>Decorative motif</title>
+  <desc>Abstract, formline-inspired decorative motif for the Kulus header. Decorative only.</desc>
+  <defs>
+    <linearGradient id="gGold" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#F1C84A" />
+      <stop offset="1" stop-color="#D7A21D" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background faint curved band -->
+  <path d="M20 88 C180 8, 360 8, 520 88" fill="none" stroke="#0B0B0B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  
+  <!-- Interlocking curved elements -->
+  <path d="M520 88 C640 140, 760 140, 860 88" fill="none" stroke="#A71D25" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+
+  <path d="M120 88 C260 44, 480 44, 700 88" fill="none" stroke="#0F6B63" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.88"/>
+
+  <!-- Central abstract eye/whorl shapes (stylized, non-specific) -->
+  <g transform="translate(360,48)">
+    <ellipse cx="0" cy="0" rx="28" ry="18" fill="url(#gGold)" stroke="#A71D25" stroke-width="3" opacity="0.98"/>
+    <ellipse cx="0" cy="0" rx="12" ry="8" fill="#0B0B0B" opacity="0.95"/>
+  </g>
+
+  <!-- Accent dots to suggest rhythm -->
+  <circle cx="200" cy="80" r="4" fill="#A71D25" opacity="0.95"/>
+  <circle cx="260" cy="76" r="4" fill="#D7A21D" opacity="0.95"/>
+  <circle cx="580" cy="76" r="4" fill="#0F6B63" opacity="0.95"/>
+
+</svg>
