@@ -1,445 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Kulus - Community Driven Healthcare</title>
-    <link rel="icon" href="https://via.placeholder.com/16x16" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="kulu.jpg" type="image/jpeg">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Basic Resets & Global Styles */
-        :root {
-            --kulus-red: #dc3545; /* Specific color from Kulus image */
-            --kulus-blue: #6c5ce7; /* Specific color from Kulus image (purple-ish) */
-            --kulus-green: #28a745; /* Specific color from Kulus image (teal/green) */
-            --kulus-black: #212529; /* Specific color from Kulus image */
-            --kulus-white: #f8f9fa; /* Specific color from Kulus image */
-            --text-dark: #333;
-            --bg-light: #f8f9fa;
+        /* Palette inspired by Northwest Coast aesthetics */
+        :root{
+            --kw-black: #0b0b0b;
+            --kw-red:   #a71d25;    /* slightly deeper ceremonial red */
+            --kw-teal:  #0f6b63;
+            --kw-gold:  #d7a21d;
+            --kw-ivory: #fbf6ef;
+            --text-dark: #222;
+            --container-max: 1100px;
+
+            /* typography tuning */
+            --sans: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --display: "Montserrat", var(--sans);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Reset */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            font-family:var(--sans);
+            color:var(--text-dark);
+            background: linear-gradient(180deg, var(--kw-ivory) 0%, #fff 100%);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.6;
+            scroll-behavior:smooth;
         }
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            scroll-behavior: smooth;
+        .container{
+            max-width:var(--container-max);
+            margin:0 auto;
+            padding:0 24px;
         }
 
-        .container {
-            max-width: 960px; /* Slightly smaller max-width for simpler content */
-            margin: 0 auto;
-            padding: 0 20px;
+        h1,h2,h3{font-family:var(--display), var(--sans); color:var(--kw-black); margin-bottom:.6rem}
+        h1{font-size:2.6rem;line-height:1.04}
+        h2{font-size:1.9rem}
+        h3{font-size:1.15rem}
+
+        a{color:var(--kw-red);text-decoration:none}
+        a:hover{text-decoration:underline}
+
+        /* NAVBAR / HEADER */
+        .navbar{
+            background: linear-gradient(90deg, var(--kw-black) 0%, rgba(11,11,11,0.95) 100%);
+            color:var(--kw-ivory);
+            position:sticky;
+            top:0;
+            z-index:1100;
+            box-shadow: 0 6px 18px rgba(11,11,11,0.25);
         }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 1rem;
-            color: var(--kulus-black);
+        .navbar .container{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:18px;
+            padding:12px 24px;
         }
 
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.6rem; }
-
-        p {
-            margin-bottom: 1rem;
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:14px;
         }
 
-        ul {
-            list-style: none;
-            margin-bottom: 1rem;
-            padding-left: 20px; /* Add padding for bullets */
+        .logo img{
+            height:56px;
+            width:auto;
+            border-radius:8px;
+            object-fit:cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            border:3px solid var(--kw-gold);
+            background:var(--kw-ivory);
         }
 
-        ul li {
-            margin-bottom: 0.5rem;
-            position: relative;
+        .brand{
+            font-weight:700;
+            letter-spacing:0.6px;
+            font-size:1.25rem;
+            color:var(--kw-ivory);
         }
 
-        ul li::before {
-            content: '•';
-            color: var(--kulus-green);
-            position: absolute;
-            left: -15px;
+        nav ul{
+            display:flex;
+            list-style:none;
+            gap:22px;
+            align-items:center;
         }
 
-        a {
-            color: var(--kulus-red);
-            text-decoration: none;
+        nav a{
+            color:var(--kw-ivory);
+            font-weight:700;
+            padding:8px 6px;
+            border-radius:6px;
+            transition:all .18s ease;
+            text-transform:uppercase;
+            font-size:0.82rem;
+            letter-spacing:0.8px;
         }
 
-        a:hover {
-            text-decoration: underline;
+        nav a:hover{
+            background:rgba(255,255,255,0.04);
+            color:var(--kw-gold);
+            transform:translateY(-2px);
         }
 
-        /* Navbar */
-        .navbar {
-            background-color: var(--kulus-black);
-            color: var(--kulus-white);
-            padding: 15px 0;
-            position: sticky; /* Sticky for simple single page, not fixed */
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        .header-motif-image{ height:56px; width:auto; display:block; }
+
+        /* Hamburger - hidden on desktop */
+        .hamburger{
+            display:none;
+            flex-direction:column;
+            gap:5px;
+            cursor:pointer;
+            width:36px;
+            background:none;
+            border:none;
+            padding:6px;
         }
 
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .hamburger span{
+            display:block;
+            height:3px;
+            border-radius:3px;
+            background:var(--kw-ivory);
+            transition:all .25s ease;
         }
 
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--kulus-white);
+        .hamburger.open span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2){ opacity:0; transform:scaleX(.2); }
+        .hamburger.open span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
+
+        /* HERO */
+        #hero{
+            padding:72px 0 56px;
+            color:var(--kw-ivory);
+            background: linear-gradient(135deg, var(--kw-red) 0%, var(--kw-teal) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+            text-align:left;
         }
 
-        .navbar .logo img {
-            height: 40px;
-            margin-right: 10px;
+        .hero-inner{
+            display:grid;
+            grid-template-columns: 1fr 380px;
+            gap:36px;
+            align-items:center;
+            padding:28px 0;
         }
 
-        .navbar .nav-links {
-            display: flex;
+        .hero-copy h1{ font-size:2.6rem; margin-bottom:8px; }
+        .hero-copy p{ font-size:1.05rem; opacity:0.96; }
+
+        .hero-art img{
+            max-width:220px;
+            width:100%;
+            height:auto;
+            border-radius:12px;
+            box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+            border:6px solid rgba(255,255,255,0.12);
         }
 
-        .navbar .nav-links li {
-            margin-left: 30px;
+        /* SECTIONS */
+        .section{ padding:64px 0 }
+
+        .grid{ display:grid; gap:24px }
+
+        /* custom list (no browser bullets) */
+        ul.custom-list{ list-style:none; padding-left:18px; display:flex; flex-direction:column; gap:10px; margin-top:12px }
+        ul.custom-list li{ position:relative; padding-left:36px; font-weight:700; color:var(--text-dark) }
+
+        /* decorative diamond marker inspired by formline geometry (abstract) */
+        ul.custom-list li::before{
+            content: "";
+            width:14px;
+            height:14px;
+            background: linear-gradient(180deg,var(--kw-gold), #b88b15);
+            border:3px solid var(--kw-red);
+            border-radius:2px;
+            position:absolute;
+            left:0;
+            top:50%;
+            transform: translateY(-50%) rotate(45deg);
+            box-shadow: 0 3px 8px rgba(11,11,11,0.12);
         }
 
-        .navbar .nav-links li a {
-            color: var(--kulus-white);
-            font-weight: 600;
-            transition: color 0.3s ease;
+        .vision-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-top:12px }
+        .vision-item{ background:#fff; padding:20px; border-radius:10px; box-shadow: 0 8px 26px rgba(11,11,11,0.06); border:1px solid rgba(11,11,11,0.03) }
+
+        /* Contact + Footer */
+        .contact-box{ display:flex; gap:20px; align-items:center; justify-content:space-between; background:linear-gradient(180deg,#fff,#fbfbfb); padding:18px; border-radius:10px; border-left:6px solid var(--kw-teal); box-shadow: 0 8px 20px rgba(11,11,11,0.06) }
+
+        footer{ background:var(--kw-black); color:var(--kw-ivory); padding:22px 0; text-align:center }
+
+        /* RESPONSIVE */
+        @media (max-width:980px){
+            .hero-inner{ grid-template-columns:1fr; text-align:center }
+            #hero{ clip-path:none; padding:56px 0 }
+            .logo img{height:48px}
+            nav ul{ display:none }
+            .hamburger{ display:flex }
+            .header-motif-image{ display:none }
         }
 
-        .navbar .nav-links li a:hover {
-            color: var(--kulus-green);
-            text-decoration: none;
+        @media (max-width:720px){
+            .container{ padding:0 16px }
+            .vision-grid{ grid-template-columns: 1fr }
         }
 
-        /* Hamburger Menu (Not needed in this simplified version as nav is always visible or absent) */
-        .hamburger-menu {
-            display: none;
-        }
-
-        /* Hero Section - now just an introductory banner */
-        #hero {
-            background-color: var(--kulus-blue); /* Solid color background */
-            color: var(--kulus-white);
-            text-align: center;
-            padding: 80px 0 60px;
-        }
-
-        #hero h1 {
-            color: var(--kulus-white);
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        #hero p {
-            font-size: 1.2rem;
-            color: var(--kulus-white);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* General Section Styling */
-        .section {
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .section h2 {
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--kulus-red);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .section:nth-of-type(odd) { /* Adjusted for different section count */
-            background-color: var(--bg-light);
-        }
-        .section:nth-of-type(even) { /* Adjusted for different section count */
-            background-color: var(--kulus-white);
-        }
-
-
-        /* Vision Section Grid */
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-            text-align: left; /* Align text left within grid items */
-        }
-
-        .vision-item {
-            background-color: var(--kulus-white);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .vision-item h3 {
-            color: var(--kulus-green);
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-
-        /* Team section removed */
-        /* Contact Form removed */
-
-        /* Contact Info - now a simple section */
-        #contact {
-            background-color: var(--kulus-blue);
-            color: var(--kulus-white);
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        #contact h2 {
-            color: var(--kulus-white);
-        }
-
-        #contact p {
-            color: var(--kulus-white);
-            margin-bottom: 0.5rem;
-        }
-
-        #contact a {
-            color: var(--kulus-green);
-            font-weight: 600;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--kulus-black);
-            color: var(--kulus-white);
-            text-align: center;
-            padding: 25px 0;
-            margin-top: 0; /* No margin as contact section is directly above */
-        }
-
-        footer a {
-            color: var(--kulus-green);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar .nav-links {
-                flex-direction: column;
-                position: absolute;
-                top: 70px; /* Adjust if navbar height changes */
-                left: 0;
-                width: 100%;
-                background-color: var(--kulus-black);
-                display: none; /* Hidden by default for mobile */
-            }
-
-            .navbar .nav-links.active {
-                display: flex;
-            }
-
-            .navbar .nav-links li {
-                margin: 10px 0;
-            }
-
-            .hamburger-menu {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-            }
-
-            .hamburger-menu span {
-                height: 3px;
-                width: 25px;
-                background-color: var(--kulus-white);
-                margin-bottom: 5px;
-                border-radius: 2px;
-            }
-
-            #hero h1 {
-                font-size: 2rem;
-            }
-
-            #hero p {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 40px 0;
-            }
-
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            .vision-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* accessibility */
+        a:focus, button:focus { outline: 3px solid rgba(215,162,29,0.18); outline-offset:3px }
     </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="https://via.placeholder.com/50x50/28a745/fff?text=Kulus" alt="Kulus Logo" id="kulus-logo"> <span>Kulus</span>
+    <!-- Header / Navbar -->
+    <header class="navbar" role="banner" aria-label="Main Navigation">
+        <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <div style="display:flex; align-items:center; gap:14px;">
+                <div class="logo" aria-hidden="false">
+                    <img src="kulu.jpg" alt="Kulus emblem" id="kulus-logo" />
+                </div>
+
+                <div style="line-height:1;">
+                    <div class="brand">Kulus</div>
+                </div>
             </div>
-            <nav>
-                <ul class="nav-links">
+
+            <!-- Decorative motif (referenced file) -->
+            <div class="header-motif" aria-hidden="true">
+                <img src="assets/motif.svg" alt="" aria-hidden="true" class="header-motif-image" />
+            </div>
+
+            <nav role="navigation" aria-label="Primary" style="display:flex; align-items:center; gap:10px;">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#vision">Our Vision</a></li>
                     <li><a href="#data">Data Sovereignty</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+
+                <button class="hamburger" id="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </nav>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </header>
 
+    <!-- Hero -->
     <main>
-        <section id="hero">
-            <div class="container">
-                <h1>The Future of Our Health is Community.</h1>
-                <p>Imagining a future healthcare model that treats patients as owners of their own data.</p>
+        <section id="hero" aria-labelledby="hero-heading">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <h1 id="hero-heading">The Future of Our Health is Community</h1>
+                    <p>
+                        Kulus envisions health systems that return power to individuals and communities.
+                        We centre Indigenous leadership, cultural knowledge, and the rights of people to control their own data.
+                    </p>
+                    <p style="margin-top:12px; font-weight:600; color:rgba(255,255,255,0.95);">
+                        We respectfully acknowledge the Kwakwaka'wakw peoples — their traditional territories include the northern part of Vancouver Island and the adjacent mainland of British Columbia — and we honour their knowledge and stewardship.
+                    </p>
+                </div>
+
+                <div class="hero-art" aria-hidden="true">
+                    <img src="kulu.jpg" alt="Kulus emblem decorative" />
+                </div>
             </div>
         </section>
 
-        <section id="about" class="section">
-            <div class="container">
-                <h2>About Kulus</h2>
-                <p>Kulus is the younger brother of the thunderbird, a protective spirit known for learning and taking care of others. At Kulus Health, we embody this spirit by building a <strong>community-driven healthcare</strong> platform.</p>
-                <p>We are focused on the future of health, starting with diabetes and pre-diabetes in Indigenous communities. We believe in a model built on:</p>
-                <ul>
-                    <li><strong>Data Sovereignty:</strong> You own and control your health data.</li>
-                    <li><strong>Holistic Health:</strong> Connecting modern care with traditional diets.</li>
-                    <li><strong>Accessibility:</strong> Promoting fitness and well-being at every age.</li>
-                </ul>
+        <!-- About -->
+        <section id="about" class="section" aria-labelledby="about-heading">
+            <div class="container grid" style="grid-template-columns:1fr 360px;">
+                <div>
+                    <h2 id="about-heading">About Kulus</h2>
+                    <div class="card" style="background:#fff;padding:20px;border-radius:12px;box-shadow:0 8px 30px rgba(11,11,11,0.06);border-left:6px solid var(--kw-gold);">
+                        <p>
+                            Kulus draws inspiration from the younger brother of the thunderbird — a guardian of learning and community care.
+                            We work with Indigenous leaders to build respectful, community-led approaches to health — starting with diabetes and pre-diabetes.
+                        </p>
+                        <p style="margin-top:12px;">
+                            Our approach is rooted in sovereignty, cultural continuity and practical supports for wellbeing.
+                        </p>
+
+                        <ul class="custom-list">
+                            <li><strong>Data Sovereignty</strong> — communities and individuals control their health information.</li>
+                            <li><strong>Holistic Health</strong> — integrating cultural practices and traditional foods alongside modern care.</li>
+                            <li><strong>Accessibility</strong> — practical supports that make health achievable at every age.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <aside>
+                    <h3 style="margin-bottom:8px;">Acknowledgement</h3>
+                    <p style="margin-bottom:10px;">
+                        We honour the Kwakwaka'wakw people, their elders past and present, and the ongoing relationships that sustain communities on these lands.
+                    </p>
+
+                    <div class="card" style="margin-top:14px;">
+                        <h3 style="margin-bottom:8px;">Principles</h3>
+                        <ul class="custom-list">
+                            <li>Community leadership & governance</li>
+                            <li>Transparency and choice</li>
+                            <li>Cultural safety and respect</li>
+                        </ul>
+                    </div>
+                </aside>
             </div>
         </section>
 
-        <section id="vision" class="section">
+        <!-- Vision -->
+        <section id="vision" class="section" aria-labelledby="vision-heading">
             <div class="container">
-                <h2>Health is Our Community</h2>
-                <p>We see health as a holistic part of our identity and strength.</p>
+                <h2 id="vision-heading">Health is Our Community</h2>
+                <p style="max-width:760px;margin:0 auto 18px auto;">
+                    Health is not only individual — it is the web of relationships, culture, language and land that sustain life.
+                </p>
+
                 <div class="vision-grid">
                     <div class="vision-item">
                         <h3>Health is our Salmon</h3>
-                        <p>It is sustenance, resilience, and a return to the source.</p>
+                        <p>It represents nourishment, cycles of return, and our connection to the land and waters.</p>
                     </div>
                     <div class="vision-item">
                         <h3>Health is our Language</h3>
-                        <p>It is how we communicate, preserve our culture, and understand our world.</p>
+                        <p>Language carries knowledge, songs and the concepts that guide care and healing.</p>
                     </div>
                     <div class="vision-item">
                         <h3>Health is our Community</h3>
-                        <p>It is our support system, our strength, and our shared future.</p>
+                        <p>Care is relational — we strengthen health when we strengthen each other.</p>
                     </div>
                     <div class="vision-item">
                         <h3>Health is our 4 Directions</h3>
-                        <p>It is a balance of the physical, mental, spiritual, and emotional.</p>
+                        <p>Balance across physical, mental, spiritual and emotional dimensions.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="data" class="section">
+        <!-- Data -->
+        <section id="data" class="section" aria-labelledby="data-heading">
             <div class="container">
-                <h2>You Are the Owner, Not the Product.</h2>
-                <p>We are imagining a world where:</p>
-                <ul>
-                    <li>Health platforms use <strong>open, secure, and accessible</strong> standards.</li>
-                    <li>Patients are <strong>data owners and customers</strong>, not data servants.</li>
-                    <li>You have the power and choice to <strong>monetize your own health data</strong>, if you wish.</li>
-                    <li>Security and privacy are genuinely <strong>empowering</strong> you, not an excuse for data mining.</li>
-                </ul>
+                <h2 id="data-heading">You Are the Owner, Not the Product</h2>
+                <p style="max-width:760px;margin:0 auto 18px auto;">
+                    We imagine systems that respect agency: open standards, clear consent, and real options for communities to decide how data is used.
+                </p>
+
+                <div class="card" style="margin:18px auto; max-width:860px;">
+                    <ul class="custom-list">
+                        <li>Open, secure and accessible standards for portability and control</li>
+                        <li>Patients as data owners and customers — not products</li>
+                        <li>Meaningful choice to share or to monetize data only with clear consent</li>
+                        <li>Security and privacy that empower, not obscure</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
+        <!-- Contact -->
+        <section id="contact" class="section" aria-labelledby="contact-heading">
             <div class="container">
-                <h2>Get In Touch</h2>
-                <p>Contact us for more information about partnership or about participation in your community.</p>
-                <p>Email: <a href="mailto:admin@indigenext.com">admin@indigenext.com</a></p>
+                <h2 id="contact-heading">Get In Touch</h2>
+                <p style="max-width:760px;margin:0 auto 14px auto;">Contact us about partnerships, participation, or to learn how we work with communities.</p>
+
+                <div class="contact-box" style="max-width:860px;margin:0 auto;">
+                    <div class="contact-info">
+                        <p style="margin-bottom:6px;"><strong>Email</strong></p>
+                        <p><a href="mailto:admin@indigenext.com">admin@indigenext.com</a></p>
+                    </div>
+
+                    <div style="text-align:right;">
+                        <p style="margin-bottom:6px;"><strong>Website</strong></p>
+                        <p><a href="https://kulus.ca" target="_blank" rel="noopener noreferrer">kulus.ca</a></p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2025 Kulus Health Inc. | <a href="https://kulus.ca">Kulus.ca</a></p>
+            <p>&copy; 2025 Kulus Health Inc. | <a href="https://kulus.ca" target="_blank" rel="noopener">Kulus.ca</a></p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth Scrolling for Navigation Links
-            document.querySelectorAll('.nav-links a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+        (function(){
+            // Smooth scroll with nav offset for sticky header
+            function scrollToHash(targetId){
+                const el = document.getElementById(targetId);
+                if(!el) return;
+                const navbar = document.querySelector('.navbar');
+                const navHeight = navbar ? navbar.offsetHeight : 0;
+                const top = el.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+
+            document.querySelectorAll('.nav-links a').forEach(a=>{
+                a.addEventListener('click', function(e){
                     e.preventDefault();
-
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-
-                    if (targetElement) {
-                        // Get the height of the sticky navbar (if applicable)
-                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                        const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
-
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-
-                        // Close mobile menu if open
-                        const navLinks = document.querySelector('.nav-links');
-                        if (navLinks.classList.contains('active')) {
-                            navLinks.classList.remove('active');
-                            document.querySelector('.hamburger-menu').classList.remove('open');
-                        }
+                    const id = this.getAttribute('href').replace('#','');
+                    // close mobile menu if open
+                    const nav = document.getElementById('nav-links');
+                    if(window.innerWidth <= 980 && nav){
+                        nav.style.display = 'none';
+                        document.getElementById('hamburger').classList.remove('open');
+                        document.getElementById('hamburger').setAttribute('aria-expanded','false');
                     }
+                    scrollToHash(id);
                 });
             });
 
-            // Hamburger Menu Toggle for Mobile
-            const hamburger = document.querySelector('.hamburger-menu');
-            const navLinks = document.querySelector('.nav-links');
+            // hamburger toggle
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
 
-            if (hamburger && navLinks) { // Only if these elements exist
-                hamburger.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                    hamburger.classList.toggle('open');
-                });
+            function openMobile(){
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.background = 'linear-gradient(180deg, rgba(11,11,11,0.98), rgba(0,0,0,0.98))';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = (document.querySelector('.navbar').offsetHeight)+'px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '12px 0';
             }
-        });
+
+            function closeMobile(){
+                navLinks.style.display = 'none';
+                navLinks.style.position = '';
+                navLinks.style.top = '';
+                navLinks.style.left = '';
+                navLinks.style.width = '';
+                navLinks.style.background = '';
+                navLinks.style.padding = '';
+            }
+
+            hamburger.addEventListener('click', function(){
+                const expanded = this.classList.toggle('open');
+                if(expanded){
+                    openMobile();
+                    this.setAttribute('aria-expanded','true');
+                } else {
+                    closeMobile();
+                    this.setAttribute('aria-expanded','false');
+                }
+            });
+
+            window.addEventListener('resize', function(){
+                if(window.innerWidth > 980){
+                    navLinks.style.display = '';
+                    hamburger.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded','false');
+                } else {
+                    closeMobile();
+                }
+            });
+
+            // scroll to hash on load if present
+            if(location.hash){
+                const id = location.hash.replace('#','');
+                setTimeout(()=> scrollToHash(id), 80);
+            }
+        })();
     </script>
 </body>
 </html>
